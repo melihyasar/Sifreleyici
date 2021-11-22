@@ -1,3 +1,3 @@
 # Sifreleyici
-Şifreleme amaçlı kullanılabilecek uygulama
+Şifreleme amaçlı kullanılabilecek uygulama. 
 Proje henüz tamamlanmadı
