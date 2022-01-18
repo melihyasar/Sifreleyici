@@ -1,164 +1,29 @@
 
 def decrypt(text1, key):
+    my_map={'a':'26','b':'41','c':'64','ç':'42','d':'40','e':'82','f':'57','g':'27','ğ':'65','h':'34','ı':'85','i':'56','j':'28','k':'63','l':'55','m':'10','n':'83','o':'43','ö':'11','p':'68','r':'84','s':'12','ş':'44','t':'58','u':'35','ü':'13','v':'14','y':'81','z':'45','x':'54','w':'86','q':'29','A':'53','B':'15','C':'67','Ç':'59','D':'16','E':'66','F':'17','G':'62','Ğ':'30','H':'46','I':'39','İ':'61','J':'69','K':'60','L':'18','M':'75','N':'70','O':'72','Ö':'36','P':'74','R':'71','S':'37','Ş':'38','T':'47','U':'31','Ü':'32','V':'87','Y':'33','Z':'19','W':'88','Q':'49','X':'48','1':'23','2':'24','3':'25','4':'76','5':'73','6':'78','7':'51','8':'52','9':'20','0':'79',' ':'89','.':'50',',':'80','!':'21','?':'77',}
+    inv_map = {v: k for k, v in my_map.items()}
+    my_map2={'a':'24','b':'14','c':'40','ç':'25','d':'19','e':'39','f':'59','g':'30','ğ':'68','h':'16','ı':'29','i':'52','j':'69','k':'72','l':'43','m':'64','n':'23','o':'75','ö':'44','p':'41','r':'73','s':'31','ş':'10','t':'46','u':'26','ü':'67','v':'53','y':'17','z':'42','x':'74','w':'15','q':'66','A':'65','B':'22','C':'71','Ç':'87','D':'45','E':'70','F':'32','G':'18','Ğ':'47','H':'60','I':'27','İ':'11','J':'33','K':'58','L':'54','M':'63','N':'61','O':'50','Ö':'62','P':'51','R':'37','S':'76','Ş':'82','T':'35','U':'80','Ü':'48','V':'36','Y':'12','Z':'57','W':'21','Q':'85','X':'34','0':'28','1':'49','2':'38','3':'79','4':'86','5':'20','6':'83','7':'81','8':'84','9':'77',' ':'78','.':'55',',':'56','!':'13','?':'89',}
+    inv_map2={v: k for k, v in my_map2.items()}
     keyr = list(key)[::-1]
     t = int(keyr[0])
     c = int(keyr[1])
     a = int(keyr[2])
-    global text2
-    global text3
-    global text4
-    text2 = int(text1) - t
-    text3 = int(text2) // c
-    text4 = str(text3)
+    text1 = int(text1) - t
+    text1 = int(text1) // c
+    text1 = str(text1)
     gtext = ""
-    a_string = text4
     split_strings = []
     n  = 2
-    
-    for index in range(0, len(a_string), n):
-        split_strings.append(a_string[index : index + n])
+    for index in range(0, len(text1), n):
+        split_strings.append(text1[index : index + n])
     
     if a == 2:
         for p in split_strings:
-            if p == "11":
-                gtext= gtext + "a"
-            elif p == "12":
-                gtext= gtext + "b"
-            elif p == "13":
-                gtext= gtext + "c"
-            elif p == "14":
-                gtext= gtext + "ç"
-            elif p == "15":
-                gtext= gtext + "d"
-            elif p == "16":
-                gtext= gtext + "e"
-            if p == "17":
-                gtext= gtext + "f"
-            elif p == "21":
-                gtext= gtext + "g"
-            elif p == "22":
-                gtext= gtext + "ğ"
-            elif p == "23":
-                gtext= gtext + "h"
-            elif p == "24":
-                gtext= gtext + "ı"
-            elif p == "25":
-                gtext= gtext + "i"
-            elif p == "26":
-                gtext= gtext + "j"
-            elif p == "27":
-                gtext= gtext + "k"
-            elif p == "31":
-                gtext= gtext + "l"
-            elif p == "32":
-                gtext= gtext + "m"
-            elif p == "33":
-                gtext= gtext + "n"
-            elif p == "34":
-                gtext= gtext + "o"
-            elif p == "35":
-                gtext= gtext + "ö"
-            elif p == "36":
-                gtext= gtext + "p"
-            elif p == "37":
-                gtext= gtext + "r"
-            elif p == "41":
-                gtext= gtext + "s"
-            elif p == "42":
-                gtext= gtext + "ş"
-            elif p == "43":
-                gtext= gtext + "t"
-            elif p == "28":
-                gtext= gtext + "u"
-            elif p == "54":
-                gtext= gtext + "ü"
-            elif p == "46":
-                gtext= gtext + "v"
-            elif p == "47":
-                gtext= gtext + "y"
-            elif p == "51":
-                gtext= gtext + "z"
-            elif p == "52":
-                gtext= gtext + " "
-            elif p == "45":
-                gtext= gtext + "x"
-            elif p == "44":
-                gtext= gtext + "w"
-            elif p == "69":
-                gtext= gtext + "q"
-            elif p == "39":
-                gtext= gtext + "."
+           gtext=gtext+inv_map2[p]
         return gtext
     elif a == 1:
         for p in split_strings:
-            if p == "17":
-                gtext= gtext + "a"
-            elif p == "47":
-                gtext= gtext + "b"
-            elif p == "12":
-                gtext= gtext + "c"
-            elif p == "24":
-                gtext= gtext + "ç"
-            elif p == "36":
-                gtext= gtext + "d"
-            elif p == "34":
-                gtext= gtext + "e"
-            elif p == "44":
-                gtext= gtext + "f"
-            elif p == "52":
-                gtext= gtext + "g"
-            elif p == "33":
-                gtext= gtext + "ğ"
-            elif p == "15":
-                gtext= gtext + "h"
-            elif p == "46":
-                gtext= gtext + "ı"
-            elif p == "22":
-                gtext= gtext + "i"
-            elif p == "35":
-                gtext= gtext + "j"
-            elif p == "11":
-                gtext= gtext + "k"
-            elif p == "27":
-                gtext= gtext + "l"
-            elif p == "51":
-                gtext= gtext + "m"
-            elif p == "16":
-                gtext= gtext + "n"
-            elif p == "43":
-                gtext= gtext + "o"
-            elif p == "26":
-                gtext= gtext + "ö"
-            elif p == "31":
-                gtext= gtext + "p"
-            elif p == "37":
-                gtext= gtext + "r"
-            elif p == "45":
-                gtext= gtext + "s"
-            elif p == "14":
-                gtext= gtext + "ş"
-            elif p == "25":
-                gtext= gtext + "t"
-            elif p == "41":
-                gtext= gtext + "u"
-            elif p == "23":
-                gtext= gtext + "ü"
-            elif p == "13":
-                gtext= gtext + "v"
-            elif p == "42":
-                gtext= gtext + "y"
-            elif p == "21":
-                gtext= gtext + "z"
-            elif p == "32":
-                gtext= gtext + " "
-            elif p == "53":
-                gtext= gtext + "x"
-            elif p == "39":
-                gtext= gtext + "w"
-            elif p == "28":
-                gtext= gtext + "q"
-            elif p == "69":
-                gtext= gtext + "."
+            gtext=gtext+inv_map[p]
         return gtext
 
     
