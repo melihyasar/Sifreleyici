@@ -1,5 +1,9 @@
 from Encryption import encrypt
 from Decryption import decrypt
+import tkinter as tk
+from tkinter import filedialog
+root = tk.Tk()
+root.withdraw()
 def giris():
      print()
      print("Hangisini yapmak istersiniz?")
@@ -20,7 +24,8 @@ while True:
    ctext,key,error = encrypt(txt)
    if error != 1:
         dosya_ismi = input("dosyanın hangi isimle kaydedilmesini istersiniz? ")
-        with open("output/" + dosya_ismi + ".sifre",'w') as sifre_dosyasi:
+        sifre_dosya_konumu = filedialog.askdirectory()
+        with open(sifre_dosya_konumu + "/"+ dosya_ismi + ".sifre",'w') as sifre_dosyasi:
              sifre_dosyasi.write(str(ctext))
         print()     
         print("Anahtarınız: " + key)
@@ -32,8 +37,9 @@ while True:
 
  elif uyg_modu == "2":
          
-     dosya_yolu = input("Şifre dosyasının konumun giriniz: ")
-     dosya_yolu = dosya_yolu.replace('"', '')
+     dosya_yolu = print("Şifre dosyasının konumun giriniz: ")
+     dosya_yolu = filedialog.askopenfilename()
+     
      key = input("Anahtarı giriniz:") 
      with open(dosya_yolu,'r') as sifrelenmis_dosya:
           sifrelenmis_veri = sifrelenmis_dosya.read()
