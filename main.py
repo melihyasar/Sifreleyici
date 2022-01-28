@@ -5,24 +5,24 @@ from tkinter import filedialog
 import colorama
 from colorama import Fore,Back,Style
 import time
+import keyboard
 colorama.init()
 root = tk.Tk()
 root.withdraw()
 def giris():
-     print()
      print("Hangisini yapmak istersiniz?")
      print("Şifreleme için 1")
-     print("Şifre çözmek için 2")
+     print("Şifre çözmek için 2") 
      secim = input()
      if secim == "1":
           return secim
-     if secim == "2":
+     elif secim == "2":
           return secim
-     else:     
+     elif secim !="1" or secim !="2":        
       giris()
-print(Fore.GREEN + "--Şifreleme uygulaması--")
+print("".join([Fore.GREEN ,"--Şifreleme uygulaması--"]))
 print("---------------------------------"+ Fore.WHITE)
-while True:
+while 1:
  uyg_modu = giris()
  if uyg_modu == "1":
    txt = input("Şifrelenecek yazıyı yazınız:")
@@ -31,14 +31,25 @@ while True:
         print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
         dosya_ismi = input("Dosyanın hangi isimle kaydedilmesini istersiniz? ")
         print("Dosyanın kaydedileceği konumu giriniz:")
-        time.sleep(2)
+        time.sleep(1)
         sifre_dosya_konumu = filedialog.askdirectory()
-        with open(sifre_dosya_konumu + "/"+ dosya_ismi + ".sifre",'w') as sifre_dosyasi:
-             sifre_dosyasi.write(str(ctext))
-        print(Fore.GREEN+"---------------------------------")     
-        print(Fore.RED + "Anahtarınız: " + key)
-        print("Anahterınızı unutmayınız!"+ Fore.WHITE)
-        print(Fore.GREEN+"---------------------------------"+Fore.WHITE) 
+        if sifre_dosya_konumu != "":
+          try:   
+               with open("".join([sifre_dosya_konumu, "/",dosya_ismi ,".sifre"]),'w') as sifre_dosyasi:
+                    sifre_dosyasi.write(str(ctext))
+               print(Fore.GREEN+"---------------------------------")     
+               print("".join([Fore.RED , "Anahtarınız: " ,key]))
+               print("Anahterınızı unutmayınız!"+ Fore.WHITE)
+               print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
+          except Exception as e:
+               print(Fore.RED+"---------------------------------")
+               print("Bir hata meydana geldi!")
+               print(e)
+               print("---------------------------------"+Fore.WHITE)
+        elif sifre_dosya_konumu == "":
+               print(Fore.RED+"---------------------------------")
+               print("Dosya konumu seçilmedi!")
+               print("---------------------------------"+Fore.WHITE)
    elif error == 1:
         print(Fore.RED+"---------------------------------")
         print("Bir hata meydana geldi!")
@@ -48,21 +59,25 @@ while True:
  elif uyg_modu == "2":
      print(Fore.GREEN+"---------------------------------"+Fore.WHITE)   
      dosya_yolu = print("Şifre dosyasının konumun giriniz: ")
-     time.sleep(2)
+     time.sleep(1)
      dosya_yolu = filedialog.askopenfilename()
-     
-     key = input("Anahtarı giriniz:") 
-     with open(dosya_yolu,'r') as sifrelenmis_dosya:
-          sifrelenmis_veri = sifrelenmis_dosya.read()
-          try:
-              yazi = decrypt(sifrelenmis_veri,key)
-              print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
-              print(yazi) 
-              print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
-          except:
-               print(Fore.RED+"---------------------------------"+Fore.WHITE)
-               print("Bir hata meydana geldi!")
-               print("Anahtarı kontrol ediniz")
-               print(Fore.RED+"---------------------------------"+Fore.WHITE)
+     if dosya_yolu != "":
+          key = input("Anahtarı giriniz:") 
+          with open(dosya_yolu,'r') as sifrelenmis_dosya:
+               sifrelenmis_veri = sifrelenmis_dosya.read()
+               try:
+                    yazi = decrypt(sifrelenmis_veri,key)
+                    print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
+                    print(yazi) 
+                    print(Fore.GREEN+"---------------------------------"+Fore.WHITE)
+               except:
+                    print(Fore.RED+"---------------------------------"+Fore.WHITE)
+                    print("Bir hata meydana geldi!")
+                    print("Anahtarı kontrol ediniz")
+                    print(Fore.RED+"---------------------------------"+Fore.WHITE)
+     elif dosya_yolu == "":
+          print(Fore.RED+"---------------------------------")
+          print("Dosya konumu seçilmedi!")
+          print("---------------------------------"+Fore.WHITE)               
 
 
