@@ -1,0 +1,1 @@
+Þifrelemede kullanýlan 'liste'leri oluþturan kod

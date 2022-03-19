@@ -5,7 +5,6 @@ from tkinter import filedialog
 import colorama
 from colorama import Fore,Back,Style
 import time
-import keyboard
 colorama.init()
 root = tk.Tk()
 root.withdraw()
